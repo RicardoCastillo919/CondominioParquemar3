@@ -109,8 +109,8 @@
                             android:text="@string/volver"
                             android:textSize="27sp"
                             android:textColor="@color/white"
-                            android:paddingTop="10sp"
-                            android:paddingBottom="10sp"
+                            android:paddingTop="5sp"
+                            android:paddingBottom="5sp"
                             app:iconSize="30sp"
                             app:iconTint="@color/white"
                             app:icon="@drawable/return_blanco"
@@ -276,7 +276,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp">
+                    android:layout_marginStart="20sp"
+                    android:layout_marginEnd="20sp">
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -284,14 +285,15 @@
                         android:orientation="vertical"
                         android:gravity="center">
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="180sp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="20dp"
-                            android:text="Patente            Vehiculo"
+                            android:layout_margin="10sp"
+                            android:text="Patente Vehiculo"
                             android:textColor="@color/black"
                             android:textAlignment="center"
+                            android:maxLines="3"
                             android:lines="2"
-                            android:textSize="30dp"
+                            android:textSize="25sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
@@ -307,10 +309,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:backgroundTint="@color/red"
-                            android:padding="25dp"
-                            android:layout_margin="10dp"
+                            android:padding="25sp"
+                            android:layout_marginEnd="20sp"
+                            android:layout_marginStart="20sp"
                             android:text="GCSL23"
-                            android:textSize="33sp"
+                            android:textSize="26sp"
                             android:textAllCaps="false"
                             android:clickable="false"
                             android:textColor="@color/white"
@@ -321,7 +324,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20dp">
+                    android:layout_margin="20sp">
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -331,9 +334,9 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnMarcarIngreso"
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:backgroundTint="@color/verde"
-                            android:padding="30dp"
+                            android:padding="25dp"
                             android:layout_margin="20dp"
                             android:text="Marcar Entrada"
                             android:textSize="28sp"
@@ -353,14 +356,14 @@
                             android:id="@+id/btnMarcarSalida"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_margin="20dp"
                             android:backgroundTint="@color/gris_boton"
                             android:clickable="false"
-                            android:padding="30dp"
+                            android:padding="25sp"
+                            android:layout_margin="20sp"
                             android:text="Marcar Salida"
                             android:textAllCaps="false"
                             android:textColor="@color/white"
-                            android:textSize="28sp"
+                            android:textSize="25sp"
                             app:cornerRadius="20dp" />
                     </LinearLayout>
                 </LinearLayout>

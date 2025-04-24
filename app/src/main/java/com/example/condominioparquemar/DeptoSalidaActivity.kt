@@ -11,19 +11,15 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
-import java.util.TimeZone
 
-class DeptoEnVisitaActivity : AppCompatActivity() {
+class DeptoSalidaActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var datosPasajeros: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_depto_en_visita)
+        setContentView(R.layout.activity_depto_salida)
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
@@ -32,11 +28,13 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
         val documentoId = intent?.getStringExtra("documentoId")
         Log.d("idDocumento", "$documentoId")
 
-        buscarDocumentoFirestore(documentoId.toString())
+        if (documentoId != null) {
+            buscarDocumentoFirestore(documentoId) // ✅ Llamamos a Firestore
+        } else {
+            Log.e("Firestore", "El documentoId es nulo")
+        }
 
-        val btnMarcarSalida = findViewById<MaterialButton>(R.id.btn_MarcarSalida)
-        val btnVolver = findViewById<MaterialButton>(R.id.btn_VolverEnVisita)
-        val fecha = obtenerFechaActual()
+        val btnVolver = findViewById<MaterialButton>(R.id.btn_VolverSalida)
 
         btnVolver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -45,37 +43,7 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
             finish()
         }
 
-        btnMarcarSalida.setOnClickListener {
-            val db = FirebaseFirestore.getInstance()
-            db.collection("respuestasFormulario")
-                .document(documentoId.toString())
-                .update(mapOf(
-                    "marcaSalida" to fecha,
-                    "estadoVisita" to "Salida"
-                )
-                )
-                .addOnSuccessListener {
-                    val intent = Intent(this, MainActivity::class.java)
-                    Toast.makeText(this, "Las visitas han salido exitosamente del condominio", Toast.LENGTH_SHORT).show()
-                    startActivity(intent)
-                    finish()
-                }
-                .addOnFailureListener { e ->
-                    Log.e("Firestore", "Error al actualizar campo", e)
-                }
-        }
 
-
-    }
-
-    private fun obtenerFechaActual(): String {
-        val formato = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
-        formato.timeZone = TimeZone.getTimeZone("America/Santiago")
-
-        val fechaActual = Date()
-        val fechaFormateada = formato.format(fechaActual)
-        Log.d("Fecha", fechaFormateada)
-        return fechaFormateada// Devuelve la fecha actual en formato yyyy_MM_dd
     }
 
     private fun buscarDocumentoFirestore(documentoId: String) {
@@ -90,7 +58,9 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
                     findViewById<TextView>(R.id.TextViewRutConductor).text =
                         datos?.get("rutConductorUno").toString()
                     val marcaIngreso = datos?.get("marcaIngreso") as? String ?: "No disponible"
-                    findViewById<TextView>(R.id.TextViewMarcaIngreso).text = "Ingreso: $marcaIngreso"
+                    findViewById<TextView>(R.id.TextViewMarcaIngreso_Salida).text = "Ingreso: $marcaIngreso"
+                    val marcaSalida = datos?.get("marcaIngreso") as? String ?: "No disponible"
+                    findViewById<TextView>(R.id.TextViewMarcaSalida_Salida).text = "Ingreso: $marcaSalida"
 
                     // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
                     datosPasajeros = datos?.get("nombrePasajerosUno").toString()
@@ -150,5 +120,3 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
         }
     }
 }
-
-

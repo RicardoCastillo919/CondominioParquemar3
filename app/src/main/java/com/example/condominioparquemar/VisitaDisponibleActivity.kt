@@ -112,7 +112,7 @@ class VisitaDisponibleActivity : AppCompatActivity() {
 
     private fun separarPersonas(datos: String) {
         var contador = 1
-        val lineas = datos.split("\n").map { it.trim() }.filter { it.isNotEmpty() }
+        val lineas = datos.split(",").map { it.trim() }.filter { it.isNotEmpty() }
         for (linea in lineas) {
             val partes = linea.split(" ") // Separa por espacios
             if (partes.size >= 2) { // Asegura que haya al menos nombre y RUT

@@ -39,6 +39,16 @@
         android:name=".DeptoEnVisitaActivity"
         android:exported="false" />
 
+    <activity
+        android:name=".DeptoSalidaActivity"
+        android:exported="false"/>
+
+    <activity
+        android:name=".DeptoSinDisponibilidadActivity"
+        android:exported="false"/>
+
+
+
     <!-- Meta-data para fuentes pre-cargadas -->
     <meta-data
         android:name="preloaded_fonts"

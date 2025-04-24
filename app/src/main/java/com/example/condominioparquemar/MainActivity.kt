@@ -140,10 +140,18 @@ class MainActivity : AppCompatActivity() {
                                 startActivity(intent)
                                 finish()
                             }
+                            "Salida" -> {
+                                val intent = Intent(this, DeptoSalidaActivity::class.java)
+                                intent.putExtra("documentoId", idDocumento)
+                                startActivity(intent)
+                                finish()
+                            }
                         }
                     }
                 } else {
-                    Log.d("Firestore", "No se encontraron documentos que coincidan.")
+                    val intent = Intent(this, DeptoSinDisponibilidadActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
             }
     }

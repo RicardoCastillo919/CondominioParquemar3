@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".DeptoEnVisitaActivity"
+    tools:context=".DeptoSalidaActivity"
     android:orientation="vertical">
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -79,9 +79,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:paddingTop="10sp"
-                        android:text="En visita"
+                        android:text="Salida"
                         android:textAlignment="center"
-                        android:textColor="@color/durazno"
+                        android:textColor="@color/red"
                         android:textSize="40sp"
                         android:textStyle="bold" />
                     <LinearLayout
@@ -104,7 +104,7 @@
                             android:orientation="horizontal"
                             android:gravity="end">
                             <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btn_VolverEnVisita"
+                                android:id="@+id/btn_VolverSalida"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -333,7 +333,7 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView
-                                android:id="@+id/TextViewMarcaIngreso"
+                                android:id="@+id/TextViewMarcaIngreso_Salida"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_margin="10sp"
@@ -346,23 +346,23 @@
                         </LinearLayout>
                         <LinearLayout
                             android:layout_width="0dp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:orientation="vertical"
                             android:gravity="center">
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btn_MarcarSalida"
+                            <TextView
+                                android:id="@+id/TextViewMarcaSalida_Salida"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:backgroundTint="@color/red"
-                                android:padding="25sp"
-                                android:text="Marcar salida"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10sp"
+                                android:text="Salida:    "
+                                android:textColor="@color/black"
+                                android:textAlignment="center"
+                                android:lines="2"
                                 android:textSize="25sp"
-                                android:textAllCaps="false"
-                                android:clickable="false"
-                                android:textColor="@color/white"
-                                app:cornerRadius="20dp" />
+                                android:textStyle="bold" />
                         </LinearLayout>
+
                     </LinearLayout>
 
                 </LinearLayout>

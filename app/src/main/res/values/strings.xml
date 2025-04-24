@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Condominio Parquemar</string>
     <string name="volver">Volver</string>
+    <string name="contactar_administrador">Contacta con el administrador ya que el departamento que estas buscando esta sin disponibilidad para el ingreso de visitas</string>
 </resources>

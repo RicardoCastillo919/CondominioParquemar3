@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".DeptoSalidaActivity"
+    android:orientation="vertical">
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginEnd="20sp"
+                android:layout_marginTop="20sp">
+                <LinearLayout
+                    android:layout_width="250sp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="10dp"
+                    android:background="@drawable/border_box">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Parquemar 3"
+                        android:textSize="25sp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Condominio Privado"
+                        android:textSize="15sp"
+                        android:textAlignment="center"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_box">
+                        <ImageView
+                            android:layout_width="60sp"
+                            android:layout_height="60sp"
+                            android:layout_margin="10sp"
+                            android:src="@mipmap/ic_launcher_round">
+                        </ImageView>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20sp"
+                    android:background="@drawable/border_box"
+                    android:backgroundTint="@color/gris_claro"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10sp"
+                        android:text="Visita no disponible"
+                        android:textAlignment="center"
+                        android:textColor="@color/red"
+                        android:textSize="40sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10sp"
+                        android:paddingBottom="10sp"
+                        android:layout_margin="30sp"
+                        android:gravity="center"
+                        android:text="@string/contactar_administrador"
+                        android:textColor="@color/black"
+                        android:textSize="27sp"
+                        android:textStyle="bold" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_VolverSinDispo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="30sp"
+                        android:text="@string/volver"
+                        android:textSize="55sp"
+                        android:textColor="@color/white"
+                        android:padding="20sp"
+                        app:iconSize="60sp"
+                        app:iconTint="@color/white"
+                        app:icon="@drawable/return_blanco"
+                        app:cornerRadius="12sp"
+                        />
+
+                    </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+
+
+</RelativeLayout>
