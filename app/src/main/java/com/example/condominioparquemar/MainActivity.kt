@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -102,8 +103,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     //Obtener la fecha actual
+    /**
+     * fecha en formato string
     private fun obtenerFechaActual(): String {
-        val formato = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+        val formato = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
         formato.timeZone = TimeZone.getTimeZone("America/Santiago")
 
         val fechaActual = Date()
@@ -111,41 +114,92 @@ class MainActivity : AppCompatActivity() {
         Log.d("Fecha", fechaFormateada)
         return fechaFormateada// Devuelve la fecha actual en formato yyyy_MM_dd
     }
+    **/
+
+    fun obtenerTimestampExactoDeHoy(): Timestamp {
+        val zonaChile = TimeZone.getTimeZone("America/Santiago")
+        val calendar = Calendar.getInstance(zonaChile).apply {
+            set(Calendar.HOUR_OF_DAY, 0)
+            set(Calendar.MINUTE, 0)
+            set(Calendar.SECOND, 0)
+            set(Calendar.MILLISECOND, 0)
+        }
+
+        return Timestamp(calendar.time)
+    }
+
+
 
     private fun buscarDocumentoFirestore(numeroDepartamento: String, torreDepartamento: String) {
-        val fecha = obtenerFechaActual()
-        Log.d("datosBaseDeDatos", fecha)
+        // fecha en formato string
+        // val fecha = obtenerFechaActual()
+
+
+        val timestampHoy = obtenerTimestampExactoDeHoy()
+
         db.collection("respuestasFormulario")
             .whereEqualTo("numeroDepartamento", numeroDepartamento)
             .whereEqualTo("torreDepartamento", torreDepartamento)
-            .whereEqualTo("fechaIngreso",fecha)
+            .whereEqualTo("fechaIngreso", timestampHoy)
             .get()
             .addOnSuccessListener { querySnapshot ->
                 if (!querySnapshot.isEmpty) {
-                    Log.d("datosBaseDeDatos", querySnapshot.toString())
-                    for (document in querySnapshot.documents) {
-                        val datos = document.data
-                        val idDocumento = document.id // Aquí obtienes el ID del documento
-                        Log.d("datosBaseDeDatos", datos.toString())
-                        when (datos?.get("estadoVisita")) {
-                            "Disponible" -> {
-                                val intent = Intent(this, VisitaDisponibleActivity::class.java)
-                                intent.putExtra("documentoId", idDocumento)
-                                startActivity(intent)
-                                finish()
-                            }
-                            "En Visita" -> {
-                                val intent = Intent(this, DeptoEnVisitaActivity::class.java)
-                                intent.putExtra("documentoId", idDocumento)
-                                startActivity(intent)
-                                finish()
-                            }
-                            "Salida" -> {
-                                val intent = Intent(this, DeptoSalidaActivity::class.java)
-                                intent.putExtra("documentoId", idDocumento)
-                                startActivity(intent)
-                                finish()
-                            }
+                    val primerDocumento = querySnapshot.documents.first()
+                    val datos = primerDocumento.data
+                    val idDocumento = primerDocumento.id
+                    Log.d("datosBaseDeDatos", datos.toString())
+
+                    when (datos?.get("estadoVisita")) {
+                        "Disponible" -> {
+                            val intent = Intent(this, VisitaDisponibleActivity::class.java)
+                            intent.putExtra("documentoId", idDocumento)
+                            startActivity(intent)
+                            finish()
+                        }
+                        "En Visita" -> {
+                            val intent = Intent(this, DeptoEnVisitaActivity::class.java)
+                            intent.putExtra("documentoId", idDocumento)
+                            startActivity(intent)
+                            finish()
+                        }
+                        "Salida" -> {
+                            db.collection("respuestasFormulario")
+                                .whereEqualTo("numeroDepartamento", numeroDepartamento)
+                                .whereEqualTo("torreDepartamento", torreDepartamento)
+                                .whereEqualTo("fechaIngreso", timestampHoy)
+                                .get()
+                                .addOnSuccessListener { nuevosDocs ->
+                                    // Filtramos los documentos relevantes
+                                    val documentosValidos = nuevosDocs.documents
+                                        .filter { doc ->
+                                            doc.id != idDocumento &&
+                                                    (doc.getString("estadoVisita") == "Disponible" ||
+                                                            doc.getString("estadoVisita") == "En Visita" ||
+                                                            doc.getString("estadoVisita") == "Salida")
+                                        }
+
+                                    val documentoElegido = documentosValidos.firstOrNull()
+
+                                    val intent = if (documentoElegido != null) {
+                                        val nuevoId = documentoElegido.id
+                                        val estadoNuevo = documentoElegido.getString("estadoVisita")
+                                        when (estadoNuevo) {
+                                            "Disponible" -> Intent(this, VisitaDisponibleActivity::class.java)
+                                            "En Visita" -> Intent(this, DeptoEnVisitaActivity::class.java)
+                                            else -> Intent(this, DeptoSalidaActivity::class.java)
+                                        }.apply {
+                                            putExtra("documentoId", nuevoId)
+                                        }
+                                    } else {
+                                        Intent(this, DeptoSalidaActivity::class.java).apply {
+                                            putExtra("documentoId", idDocumento)
+                                        }
+                                    }
+
+                                    startActivity(intent)
+                                    finish()
+                                }
+
                         }
                     }
                 } else {

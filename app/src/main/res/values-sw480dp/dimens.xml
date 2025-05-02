@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_size">22sp</dimen> <!-- Pantallas pequeñas -->
+    <dimen name="title_size">35sp</dimen>
+    <dimen name="under_title_size">12sp</dimen>
+    <dimen name="padding_size">10sp</dimen>
+    <dimen name="margin_size">15sp</dimen>
+    <dimen name="corner_radius">14sp</dimen>
+</resources>

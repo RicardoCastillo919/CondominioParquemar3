@@ -18,9 +18,9 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_marginEnd="20sp"
-                android:layout_marginTop="20sp">
+                android:layout_marginStart="@dimen/margin_size"
+                android:layout_marginEnd="@dimen/margin_size"
+                android:layout_marginTop="@dimen/margin_size">
                 <LinearLayout
                     android:layout_width="250sp"
                     android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:text="Parquemar 3"
-                        android:textSize="25sp"
+                        android:textSize="@dimen/text_size"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
                     <TextView
@@ -41,7 +41,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:text="Condominio Privado"
-                        android:textSize="15sp"
+                        android:textSize="@dimen/under_title_size"
                         android:textAlignment="center"/>
                 </LinearLayout>
                 <LinearLayout
@@ -70,7 +70,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
+                    android:layout_margin="@dimen/margin_size"
                     android:background="@drawable/border_box"
                     android:backgroundTint="@color/gris_claro"
                     android:orientation="vertical">
@@ -82,7 +82,7 @@
                         android:text="Visita no disponible"
                         android:textAlignment="center"
                         android:textColor="@color/red"
-                        android:textSize="40sp"
+                        android:textSize="@dimen/title_size"
                         android:textStyle="bold" />
                     <TextView
                         android:layout_width="wrap_content"
@@ -93,7 +93,7 @@
                         android:gravity="center"
                         android:text="@string/contactar_administrador"
                         android:textColor="@color/black"
-                        android:textSize="27sp"
+                        android:textSize="@dimen/text_size"
                         android:textStyle="bold" />
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btn_VolverSinDispo"
@@ -102,7 +102,7 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="30sp"
                         android:text="@string/volver"
-                        android:textSize="55sp"
+                        android:textSize="@dimen/title_size"
                         android:textColor="@color/white"
                         android:padding="20sp"
                         app:iconSize="60sp"

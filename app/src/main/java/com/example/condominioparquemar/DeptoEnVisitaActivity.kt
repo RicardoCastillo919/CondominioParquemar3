@@ -11,7 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.Timestamp
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
@@ -36,7 +38,8 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
 
         val btnMarcarSalida = findViewById<MaterialButton>(R.id.btn_MarcarSalida)
         val btnVolver = findViewById<MaterialButton>(R.id.btn_VolverEnVisita)
-        val fecha = obtenerFechaActual()
+
+
 
         btnVolver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -50,7 +53,7 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
             db.collection("respuestasFormulario")
                 .document(documentoId.toString())
                 .update(mapOf(
-                    "marcaSalida" to fecha,
+                    "marcaSalida" to obtenerTimestampActual(),
                     "estadoVisita" to "Salida"
                 )
                 )
@@ -68,14 +71,18 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
 
     }
 
-    private fun obtenerFechaActual(): String {
+    private fun obtenerTimestampActual(): Timestamp {
+        val zonaChile = TimeZone.getTimeZone("America/Santiago")
+        val calendar = Calendar.getInstance(zonaChile)
+        return Timestamp(calendar.time)
+    }
+
+    private fun timestampAFechaLegible(timestamp: Timestamp?): String {
+        if (timestamp == null) return "No disponible"
+
         val formato = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
         formato.timeZone = TimeZone.getTimeZone("America/Santiago")
-
-        val fechaActual = Date()
-        val fechaFormateada = formato.format(fechaActual)
-        Log.d("Fecha", fechaFormateada)
-        return fechaFormateada// Devuelve la fecha actual en formato yyyy_MM_dd
+        return formato.format(timestamp.toDate())
     }
 
     private fun buscarDocumentoFirestore(documentoId: String) {
@@ -89,8 +96,11 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
                         datos?.get("nombreConductorUno").toString()
                     findViewById<TextView>(R.id.TextViewRutConductor).text =
                         datos?.get("rutConductorUno").toString()
-                    val marcaIngreso = datos?.get("marcaIngreso") as? String ?: "No disponible"
-                    findViewById<TextView>(R.id.TextViewMarcaIngreso).text = "Ingreso: $marcaIngreso"
+
+                    //Marca Ingreso
+                    val marcaIngresoTimestamp = datos?.get("marcaIngreso") as? Timestamp
+                    val marcaIngresoFormateado = timestampAFechaLegible(marcaIngresoTimestamp)
+                    findViewById<TextView>(R.id.TextViewMarcaIngreso).text = "Ingreso: $marcaIngresoFormateado"
 
                     // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
                     datosPasajeros = datos?.get("nombrePasajerosUno").toString()

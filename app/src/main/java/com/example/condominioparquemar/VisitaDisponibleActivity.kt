@@ -13,8 +13,10 @@ import com.google.android.material.button.MaterialButton
 import com.google.common.base.Objects
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.Timestamp
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import java.util.TimeZone
@@ -43,7 +45,6 @@ class VisitaDisponibleActivity : AppCompatActivity() {
 
         val btnMarcarIngreso = findViewById< MaterialButton>(R.id.btnMarcarIngreso)
         val btnVolver = findViewById<MaterialButton>(R.id.btn_VolverDisponible)
-        val fecha = obtenerFechaActual()
 
         btnVolver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -57,7 +58,7 @@ class VisitaDisponibleActivity : AppCompatActivity() {
             db.collection("respuestasFormulario")
                 .document(documentoId.toString())
                 .update(mapOf(
-                    "marcaIngreso" to fecha,
+                    "marcaIngreso" to obtenerTimestampActual(),
                     "estadoVisita" to "En Visita"
                     )
                 )
@@ -72,15 +73,10 @@ class VisitaDisponibleActivity : AppCompatActivity() {
                 }
         }
     }
-
-    private fun obtenerFechaActual(): String {
-        val formato = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale.getDefault())
-        formato.timeZone = TimeZone.getTimeZone("America/Santiago")
-
-        val fechaActual = Date()
-        val fechaFormateada = formato.format(fechaActual)
-        Log.d("Fecha", fechaFormateada)
-        return fechaFormateada// Devuelve la fecha actual en formato yyyy_MM_dd
+    private fun obtenerTimestampActual(): Timestamp {
+        val zonaChile = TimeZone.getTimeZone("America/Santiago")
+        val calendar = Calendar.getInstance(zonaChile)
+        return Timestamp(calendar.time)
     }
 
     private fun buscarDocumentoFirestore(documentoId: String) {

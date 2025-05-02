@@ -18,31 +18,32 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20sp"
-                android:layout_marginEnd="20sp"
-                android:layout_marginTop="20sp">
+                android:layout_marginStart="@dimen/margin_size"
+                android:layout_marginEnd="@dimen/margin_size"
+                android:layout_marginTop="@dimen/margin_size">
                 <LinearLayout
                     android:layout_width="250sp"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="10dp"
+                    android:padding="@dimen/padding_size"
                     android:background="@drawable/border_box">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
                         android:text="Parquemar 3"
-                        android:textSize="25sp"
+                        android:textSize="@dimen/text_size"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="Condominio Privado"
-                        android:textSize="15sp"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/under_title_size" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -55,7 +56,7 @@
                         <ImageView
                             android:layout_width="60sp"
                             android:layout_height="60sp"
-                            android:layout_margin="10sp"
+                            android:layout_margin="@dimen/margin_size"
                             android:src="@mipmap/ic_launcher_round">
                         </ImageView>
                     </LinearLayout>
@@ -70,7 +71,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_margin="20sp"
+                    android:layout_margin="@dimen/margin_size"
                     android:background="@drawable/border_box"
                     android:backgroundTint="@color/gris_claro"
                     android:orientation="vertical">
@@ -82,13 +83,13 @@
                         android:text="Salida"
                         android:textAlignment="center"
                         android:textColor="@color/red"
-                        android:textSize="40sp"
+                        android:textSize="@dimen/title_size"
                         android:textStyle="bold" />
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:layout_margin="20sp">
+                        android:layout_margin="@dimen/margin_size">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -96,7 +97,7 @@
                             android:paddingBottom="10sp"
                             android:text="Datos Visita"
                             android:textColor="@color/black"
-                            android:textSize="27sp"
+                            android:textSize="@dimen/text_size"
                             android:textStyle="bold" />
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -109,14 +110,14 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:text="@string/volver"
-                                android:textSize="27sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/white"
                                 android:paddingTop="5sp"
                                 android:paddingBottom="5sp"
                                 app:iconSize="30sp"
                                 app:iconTint="@color/white"
                                 app:icon="@drawable/return_blanco"
-                                app:cornerRadius="12sp"
+                                app:cornerRadius="@dimen/corner_radius"
                                 />
                         </LinearLayout>
                     </LinearLayout>
@@ -126,10 +127,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginEnd="20sp"
-                        android:layout_marginTop="20sp"
-                        android:layout_marginBottom="10sp">
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginEnd="@dimen/margin_size"
+                        android:layout_marginTop="@dimen/margin_size"
+                        android:layout_marginBottom="@dimen/margin_size">
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -140,13 +141,13 @@
                                 android:id="@+id/TextViewNombreConductor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="23sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:id="@+id/TextViewRutConductor"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="23sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
                         <LinearLayout
@@ -161,13 +162,13 @@
                                 android:id="@+id/TextViewNombrePasajeroUno"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="23sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:id="@+id/TextViewRutPasajeroUno"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="23sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
 
@@ -176,8 +177,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginEnd="20sp"
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginEnd="@dimen/margin_size"
                         android:layout_marginBottom="10sp"
                         android:layout_marginTop="10sp">
                         <LinearLayout
@@ -192,13 +193,13 @@
                                 android:id="@+id/TextViewNombrePasajeroDos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="23sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:id="@+id/TextViewRutPasajeroDos"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
                         <LinearLayout
@@ -213,13 +214,13 @@
                                 android:id="@+id/TextViewNombrePasajeroTres"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:id="@+id/TextViewRutPasajeroTres"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
 
@@ -228,10 +229,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginEnd="20sp"
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginEnd="@dimen/margin_size"
                         android:layout_marginTop="10sp"
-                        android:layout_marginBottom="20sp">
+                        android:layout_marginBottom="@dimen/margin_size">
                         <LinearLayout
                             android:id="@+id/layoutPasajeroCuatro"
                             android:layout_width="0dp"
@@ -244,13 +245,13 @@
                                 android:id="@+id/TextViewNombrePasajeroCuatro"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:id="@+id/TextViewRutPasajeroCuatro"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
                         <LinearLayout
@@ -265,13 +266,13 @@
                                 android:id="@+id/TextViewNombrePasajeroCinco"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
                                 android:id="@+id/TextViewRutPasajeroCinco"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
 
@@ -279,8 +280,8 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="20sp"
-                        android:layout_marginEnd="20sp">
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginEnd="@dimen/margin_size">
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -294,9 +295,10 @@
                                 android:text="Patente Vehiculo"
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
+                                android:gravity="center"
                                 android:maxLines="3"
                                 android:lines="2"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
@@ -312,20 +314,20 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/red"
-                                android:padding="25sp"
+                                android:padding="@dimen/padding_size"
                                 android:text="GCSL23"
-                                android:textSize="26sp"
+                                android:textSize="@dimen/text_size"
                                 android:textAllCaps="false"
                                 android:clickable="false"
                                 android:textColor="@color/white"
-                                app:cornerRadius="20dp" />
+                                app:cornerRadius="@dimen/corner_radius" />
                         </LinearLayout>
 
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="20sp">
+                        android:layout_margin="@dimen/margin_size">
                         <LinearLayout
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -341,7 +343,7 @@
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
                                 android:lines="2"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textStyle="bold" />
                         </LinearLayout>
                         <LinearLayout
@@ -359,7 +361,7 @@
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
                                 android:lines="2"
-                                android:textSize="25sp"
+                                android:textSize="@dimen/text_size"
                                 android:textStyle="bold" />
                         </LinearLayout>
 
