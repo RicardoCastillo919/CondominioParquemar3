@@ -62,8 +62,8 @@ class DeptoSalidaActivity : AppCompatActivity() {
                         datos?.get("nombreConductorUno").toString()
                     findViewById<TextView>(R.id.TextViewRutConductor).text =
                         datos?.get("rutConductorUno").toString()
-
-
+                    findViewById<MaterialButton>(R.id.TextViewPatente_Salida).text =
+                        datos?.get("patenteVehiculoUno").toString()
                     //Marca Ingreso
                     val marcaIngreso = datos?.get("marcaIngreso") as? Timestamp
                     val marcaIngresoFormateado = timestampAFechaLegible(marcaIngreso)

@@ -96,6 +96,8 @@ class DeptoEnVisitaActivity : AppCompatActivity() {
                         datos?.get("nombreConductorUno").toString()
                     findViewById<TextView>(R.id.TextViewRutConductor).text =
                         datos?.get("rutConductorUno").toString()
+                    findViewById<MaterialButton>(R.id.TextViewPatente_EnVisita).text =
+                        datos?.get("patenteVehiculoUno").toString()
 
                     //Marca Ingreso
                     val marcaIngresoTimestamp = datos?.get("marcaIngreso") as? Timestamp

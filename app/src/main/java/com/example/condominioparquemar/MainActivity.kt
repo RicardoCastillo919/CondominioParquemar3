@@ -12,6 +12,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
+import com.google.firebase.firestore.DocumentSnapshot
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -102,113 +103,88 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    //Obtener la fecha actual
-    /**
-     * fecha en formato string
-    private fun obtenerFechaActual(): String {
-        val formato = SimpleDateFormat("d/M/yyyy", Locale.getDefault())
-        formato.timeZone = TimeZone.getTimeZone("America/Santiago")
-
-        val fechaActual = Date()
-        val fechaFormateada = formato.format(fechaActual)
-        Log.d("Fecha", fechaFormateada)
-        return fechaFormateada// Devuelve la fecha actual en formato yyyy_MM_dd
-    }
-    **/
-
-    fun obtenerTimestampExactoDeHoy(): Timestamp {
-        val zonaChile = TimeZone.getTimeZone("America/Santiago")
-        val calendar = Calendar.getInstance(zonaChile).apply {
-            set(Calendar.HOUR_OF_DAY, 0)
-            set(Calendar.MINUTE, 0)
-            set(Calendar.SECOND, 0)
-            set(Calendar.MILLISECOND, 0)
-        }
-
-        return Timestamp(calendar.time)
-    }
-
-
 
     private fun buscarDocumentoFirestore(numeroDepartamento: String, torreDepartamento: String) {
-        // fecha en formato string
-        // val fecha = obtenerFechaActual()
-
-
-        val timestampHoy = obtenerTimestampExactoDeHoy()
+        val hoy = Timestamp.now()
+        val db = FirebaseFirestore.getInstance()
 
         db.collection("respuestasFormulario")
             .whereEqualTo("numeroDepartamento", numeroDepartamento)
             .whereEqualTo("torreDepartamento", torreDepartamento)
-            .whereEqualTo("fechaIngreso", timestampHoy)
             .get()
-            .addOnSuccessListener { querySnapshot ->
-                if (!querySnapshot.isEmpty) {
-                    val primerDocumento = querySnapshot.documents.first()
-                    val datos = primerDocumento.data
-                    val idDocumento = primerDocumento.id
-                    Log.d("datosBaseDeDatos", datos.toString())
+            .addOnSuccessListener { snapshot ->
+                val documentos = snapshot.documents
 
-                    when (datos?.get("estadoVisita")) {
-                        "Disponible" -> {
-                            val intent = Intent(this, VisitaDisponibleActivity::class.java)
-                            intent.putExtra("documentoId", idDocumento)
-                            startActivity(intent)
-                            finish()
-                        }
-                        "En Visita" -> {
-                            val intent = Intent(this, DeptoEnVisitaActivity::class.java)
-                            intent.putExtra("documentoId", idDocumento)
-                            startActivity(intent)
-                            finish()
-                        }
-                        "Salida" -> {
-                            db.collection("respuestasFormulario")
-                                .whereEqualTo("numeroDepartamento", numeroDepartamento)
-                                .whereEqualTo("torreDepartamento", torreDepartamento)
-                                .whereEqualTo("fechaIngreso", timestampHoy)
-                                .get()
-                                .addOnSuccessListener { nuevosDocs ->
-                                    // Filtramos los documentos relevantes
-                                    val documentosValidos = nuevosDocs.documents
-                                        .filter { doc ->
-                                            doc.id != idDocumento &&
-                                                    (doc.getString("estadoVisita") == "Disponible" ||
-                                                            doc.getString("estadoVisita") == "En Visita" ||
-                                                            doc.getString("estadoVisita") == "Salida")
-                                        }
+                val documentosDelDia = documentos.filter { doc ->
+                    val ingreso = doc.getTimestamp("fechaIngreso")
+                    val salida = doc.getTimestamp("fechaSalida")
+                    val estado = doc.getString("estadoVisita")
 
-                                    val documentoElegido = documentosValidos.firstOrNull()
+                    when (estado) {
+                        "Disponible" -> ingreso?.let { esMismoDia(it.toDate(), hoy.toDate()) } ?: false
+                        "En Visita" -> true
+                        "Salida" -> salida?.let { esMismoDia(it.toDate(), hoy.toDate()) } ?: false
+                        else -> false
+                    }
+                }.sortedBy { it.getTimestamp("marcaTemporal") }
 
-                                    val intent = if (documentoElegido != null) {
-                                        val nuevoId = documentoElegido.id
-                                        val estadoNuevo = documentoElegido.getString("estadoVisita")
-                                        when (estadoNuevo) {
-                                            "Disponible" -> Intent(this, VisitaDisponibleActivity::class.java)
-                                            "En Visita" -> Intent(this, DeptoEnVisitaActivity::class.java)
-                                            else -> Intent(this, DeptoSalidaActivity::class.java)
-                                        }.apply {
-                                            putExtra("documentoId", nuevoId)
-                                        }
-                                    } else {
-                                        Intent(this, DeptoSalidaActivity::class.java).apply {
-                                            putExtra("documentoId", idDocumento)
-                                        }
-                                    }
+                if (documentosDelDia.isEmpty()) {
+                    irASinDisponibilidad()
+                    return@addOnSuccessListener
+                }
 
-                                    startActivity(intent)
-                                    finish()
-                                }
+                val primero = documentosDelDia.first()
+                val estadoPrimero = primero.getString("estadoVisita")
+                val idPrimero = primero.id
 
+                when (estadoPrimero) {
+                    "Disponible" -> irAActividad("Disponible", idPrimero)
+                    "En Visita" -> irAActividad("En Visita", idPrimero)
+                    "Salida" -> {
+                        val siguientes = documentosDelDia.filter { it.id != idPrimero &&
+                                listOf("Disponible", "En Visita", "Salida").contains(it.getString("estadoVisita")) }
+
+                        val siguiente = siguientes.firstOrNull()
+                        if (siguiente != null) {
+                            val estadoSiguiente = siguiente.getString("estadoVisita")
+                            val idSiguiente = siguiente.id
+                            irAActividad(estadoSiguiente, idSiguiente)
+                        } else {
+                            irAActividad("Salida", idPrimero)
                         }
                     }
-                } else {
-                    val intent = Intent(this, DeptoSinDisponibilidadActivity::class.java)
-                    startActivity(intent)
-                    finish()
+                    else -> irASinDisponibilidad()
                 }
             }
     }
+
+    private fun irAActividad(estado: String?, docId: String) {
+        val intent = when (estado) {
+            "Disponible" -> Intent(this, VisitaDisponibleActivity::class.java)
+            "En Visita" -> Intent(this, DeptoEnVisitaActivity::class.java)
+            "Salida" -> Intent(this, DeptoSalidaActivity::class.java)
+            else -> Intent(this, DeptoSinDisponibilidadActivity::class.java)
+        }
+        intent.putExtra("documentoId", docId)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun irASinDisponibilidad() {
+        val intent = Intent(this, DeptoSinDisponibilidadActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun esMismoDia(fecha1: Date, fecha2: Date): Boolean {
+        val cal1 = Calendar.getInstance().apply { time = fecha1 }
+        val cal2 = Calendar.getInstance().apply { time = fecha2 }
+
+        return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH) &&
+                cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH)
+    }
+
 }
 
 

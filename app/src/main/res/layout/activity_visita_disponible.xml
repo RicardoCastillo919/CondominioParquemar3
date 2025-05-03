@@ -345,7 +345,7 @@
                         android:orientation="vertical">
 
                         <com.google.android.material.button.MaterialButton
-                            android:id="@+id/TextViewPatente"
+                            android:id="@+id/TextViewPatente_Disponible"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/margin_size"

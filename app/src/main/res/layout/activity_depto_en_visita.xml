@@ -308,7 +308,7 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <com.google.android.material.button.MaterialButton
-                                android:id="@+id/TextViewPatente"
+                                android:id="@+id/TextViewPatente_EnVisita"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/red"

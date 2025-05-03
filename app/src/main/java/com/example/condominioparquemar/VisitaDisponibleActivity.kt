@@ -90,7 +90,8 @@ class VisitaDisponibleActivity : AppCompatActivity() {
                         datos?.get("nombreConductorUno").toString()
                     findViewById<TextView>(R.id.TextViewRutConductor).text =
                         datos?.get("rutConductorUno").toString()
-
+                    findViewById<MaterialButton>(R.id.TextViewPatente_Disponible).text =
+                        datos?.get("patenteVehiculoUno").toString()
                     // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
                     datosPasajeros = datos?.get("nombrePasajerosUno").toString()
                     Log.d("DatosPasajeros", datosPasajeros)
