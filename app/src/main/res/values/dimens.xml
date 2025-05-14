@@ -3,7 +3,10 @@
     <dimen name="text_size">30sp</dimen> <!-- Pantallas grandes por defecto -->
     <dimen name="title_size">50sp</dimen>
     <dimen name="under_title_size">15sp</dimen>
-    <dimen name="padding_size">25sp</dimen>
-    <dimen name="margin_size">20sp</dimen>
-    <dimen name="corner_radius">20sp</dimen>
+
+    <dimen name="padding_size">25dp</dimen>
+    <dimen name="margin_size">20dp</dimen>
+    <dimen name="corner_radius">20dp</dimen>
+    <dimen name="banner_size">100dp</dimen>
+
 </resources>

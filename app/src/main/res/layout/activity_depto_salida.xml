@@ -17,13 +17,13 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/banner_size"
                 android:layout_marginStart="@dimen/margin_size"
                 android:layout_marginEnd="@dimen/margin_size"
                 android:layout_marginTop="@dimen/margin_size">
                 <LinearLayout
                     android:layout_width="250sp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:padding="@dimen/padding_size"
@@ -47,15 +47,15 @@
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="end">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/border_box">
                         <ImageView
-                            android:layout_width="60sp"
-                            android:layout_height="60sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_margin="@dimen/margin_size"
                             android:src="@mipmap/ic_launcher_round">
                         </ImageView>
@@ -65,9 +65,45 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:gravity="center_vertical">
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_Vehiculo_Uno_Salida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_size"
+                        android:paddingTop="@dimen/padding_size"
+                        android:paddingBottom="@dimen/padding_size"
+                        android:text="@string/vehiculoUno"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:backgroundTint="@color/red"
+                        app:cornerRadius="@dimen/corner_radius"
+                        app:icon="@drawable/car"
+                        app:iconSize="30dp"
+                        app:iconTint="@color/white" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_Vehiculo_Dos_Salida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_size"
+                        android:paddingTop="@dimen/padding_size"
+                        android:paddingBottom="@dimen/padding_size"
+                        android:text="@string/vehiculoDos"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:backgroundTint="@color/gris_boton"
+                        app:cornerRadius="@dimen/corner_radius"
+                        app:icon="@drawable/car"
+                        app:iconSize="30sp"
+                        app:iconTint="@color/white" />
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -79,7 +115,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="10sp"
+                        android:paddingTop="10dp"
                         android:text="Salida"
                         android:textAlignment="center"
                         android:textColor="@color/red"
@@ -93,8 +129,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingTop="10sp"
-                            android:paddingBottom="10sp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
                             android:text="Datos Visita"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size"
@@ -112,9 +148,9 @@
                                 android:text="@string/volver"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/white"
-                                android:paddingTop="5sp"
-                                android:paddingBottom="5sp"
-                                app:iconSize="30sp"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                app:iconSize="30dp"
                                 app:iconTint="@color/white"
                                 app:icon="@drawable/return_blanco"
                                 app:cornerRadius="@dimen/corner_radius"
@@ -179,8 +215,8 @@
                         android:gravity="center"
                         android:layout_marginStart="@dimen/margin_size"
                         android:layout_marginEnd="@dimen/margin_size"
-                        android:layout_marginBottom="10sp"
-                        android:layout_marginTop="10sp">
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginTop="10dp">
                         <LinearLayout
                             android:id="@+id/layoutPasajeroDos"
                             android:layout_width="0dp"
@@ -289,9 +325,9 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView
-                                android:layout_width="180sp"
+                                android:layout_width="180dp"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="10sp"
+                                android:layout_margin="@dimen/margin_size"
                                 android:text="Patente Vehiculo"
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
@@ -338,7 +374,7 @@
                                 android:id="@+id/TextViewMarcaIngreso_Salida"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="10sp"
+                                android:layout_margin="@dimen/margin_size"
                                 android:text="Ingreso:    "
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
@@ -356,10 +392,12 @@
                                 android:id="@+id/TextViewMarcaSalida_Salida"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="10sp"
+                                android:layout_margin="@dimen/margin_size"
                                 android:text="Salida:    "
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
+                                android:paddingStart="5dp"
+                                android:paddingEnd="5dp"
                                 android:lines="2"
                                 android:textSize="@dimen/text_size"
                                 android:textStyle="bold" />

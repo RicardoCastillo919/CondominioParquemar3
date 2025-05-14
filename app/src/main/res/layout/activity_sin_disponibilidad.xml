@@ -17,16 +17,16 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/banner_size"
                 android:layout_marginStart="@dimen/margin_size"
                 android:layout_marginEnd="@dimen/margin_size"
                 android:layout_marginTop="@dimen/margin_size">
                 <LinearLayout
                     android:layout_width="250sp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:padding="10dp"
+                    android:padding="@dimen/padding_size"
                     android:background="@drawable/border_box">
                     <TextView
                         android:layout_width="wrap_content"
@@ -36,26 +36,27 @@
                         android:textSize="@dimen/text_size"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="Condominio Privado"
-                        android:textSize="@dimen/under_title_size"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/under_title_size" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="end">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/border_box">
                         <ImageView
-                            android:layout_width="60sp"
-                            android:layout_height="60sp"
-                            android:layout_margin="10sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/margin_size"
                             android:src="@mipmap/ic_launcher_round">
                         </ImageView>
                     </LinearLayout>

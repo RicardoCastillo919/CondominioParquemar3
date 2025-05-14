@@ -8,6 +8,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.toColorInt
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
@@ -21,6 +22,8 @@ class DeptoSalidaActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var datosPasajeros: String
+    private var datos: Map<String, Any>? = null
+    private var botonSeleccionado: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,12 +43,71 @@ class DeptoSalidaActivity : AppCompatActivity() {
         }
 
         val btnVolver = findViewById<MaterialButton>(R.id.btn_VolverSalida)
+        // Esta configurados para que funcione de manera interruptor
+        val btnVehiculoUno = findViewById<MaterialButton>(R.id.btn_Vehiculo_Uno_Salida)
+        val btnVehiculoDos = findViewById<MaterialButton>(R.id.btn_Vehiculo_Dos_Salida)
 
         btnVolver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             Toast.makeText(this, "Volviste al menu principal", Toast.LENGTH_SHORT).show()
             startActivity(intent)
             finish()
+        }
+
+        fun animarBotonPresionado(boton: MaterialButton) {
+            boton.animate()
+                .scaleX(0.9f).scaleY(0.9f)
+                .setDuration(50)
+                .withEndAction {
+                    boton.animate()
+                        .scaleX(1f).scaleY(1f)
+                        .setDuration(50)
+                        .start()
+                }
+                .start()
+        }
+
+        btnVehiculoUno.setOnClickListener {
+            if (botonSeleccionado != 1) {
+                animarBotonPresionado(btnVehiculoUno)
+                btnVehiculoUno.setBackgroundColor("#a40101".toColorInt()) // rojo
+                btnVehiculoDos.setBackgroundColor("#A6A6A6".toColorInt()) // gris
+                botonSeleccionado = 1
+            }
+            //datos Vehiculo Uno
+            findViewById<TextView>(R.id.TextViewNombreConductor).text = datos?.get("nombreConductorUno").toString()
+            findViewById<TextView>(R.id.TextViewRutConductor).text = datos?.get("rutConductorUno").toString()
+            findViewById<MaterialButton>(R.id.TextViewPatente_Salida).text = datos?.get("patenteVehiculoUno").toString()
+            // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
+            datosPasajeros = datos?.get("nombrePasajerosUno").toString()
+            Log.d("DatosPasajeros", datosPasajeros)
+            // ✅ Llamamos a `separarPersonas()` después de actualizar `datosPasajeros`
+            separarPersonas(datosPasajeros)
+        }
+
+        btnVehiculoDos.setOnClickListener {
+
+            //datos Vehiculo Dos
+            if(datos?.get("patenteVehiculoDos").toString().isNotEmpty()){
+                if (botonSeleccionado != 2) {
+                    animarBotonPresionado(btnVehiculoDos)
+                    btnVehiculoDos.setBackgroundColor("#a40101".toColorInt()) // rojo
+                    btnVehiculoUno.setBackgroundColor("#A6A6A6".toColorInt()) // gris
+                    botonSeleccionado = 2
+                }
+                findViewById<TextView>(R.id.TextViewNombreConductor).text = datos?.get("nombreConductorDos").toString()
+                findViewById<TextView>(R.id.TextViewRutConductor).text = datos?.get("rutConductorDos").toString()
+                findViewById<MaterialButton>(R.id.TextViewPatente_Salida).text = datos?.get("patenteVehiculoDos").toString()
+                // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
+                datosPasajeros = datos?.get("nombrePasajerosDos").toString()
+                Log.d("DatosPasajeros", datosPasajeros)
+                // ✅ Llamamos a `separarPersonas()` después de actualizar `datosPasajeros`
+                separarPersonas(datosPasajeros)
+            }else{
+                Toast.makeText(this, "No hay segundo auto registrado", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
 
 
@@ -57,7 +119,7 @@ class DeptoSalidaActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    val datos = document.data
+                    datos = document.data
                     findViewById<TextView>(R.id.TextViewNombreConductor).text =
                         datos?.get("nombreConductorUno").toString()
                     findViewById<TextView>(R.id.TextViewRutConductor).text =
@@ -71,7 +133,7 @@ class DeptoSalidaActivity : AppCompatActivity() {
 
                     val marcaSalida = datos?.get("marcaSalida") as? Timestamp
                     val marcaSalidaFormateado = timestampAFechaLegible(marcaSalida)
-                    findViewById<TextView>(R.id.TextViewMarcaSalida_Salida).text = "Ingreso: ${marcaSalidaFormateado}"
+                    findViewById<TextView>(R.id.TextViewMarcaSalida_Salida).text = "Salida: ${marcaSalidaFormateado}"
 
 
                     // 🔥 Actualizamos `datosPasajeros` con la información de Firestore

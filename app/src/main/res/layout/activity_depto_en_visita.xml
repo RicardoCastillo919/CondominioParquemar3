@@ -17,13 +17,13 @@
             android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/banner_size"
                 android:layout_marginStart="@dimen/margin_size"
                 android:layout_marginEnd="@dimen/margin_size"
                 android:layout_marginTop="@dimen/margin_size">
                 <LinearLayout
                     android:layout_width="250sp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:padding="@dimen/padding_size"
@@ -36,25 +36,26 @@
                         android:textSize="@dimen/text_size"
                         android:textStyle="bold"
                         android:textAlignment="center"/>
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
                         android:text="Condominio Privado"
-                        android:textSize="@dimen/under_title_size"
-                        android:textAlignment="center"/>
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/under_title_size" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="end">
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:background="@drawable/border_box">
                         <ImageView
-                            android:layout_width="60sp"
-                            android:layout_height="60sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
                             android:layout_margin="@dimen/margin_size"
                             android:src="@mipmap/ic_launcher_round">
                         </ImageView>
@@ -64,9 +65,45 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:gravity="center_vertical">
-
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_Vehiculo_Uno_EnVisita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_size"
+                        android:paddingTop="@dimen/padding_size"
+                        android:paddingBottom="@dimen/padding_size"
+                        android:text="@string/vehiculoUno"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:backgroundTint="@color/red"
+                        app:cornerRadius="@dimen/corner_radius"
+                        app:icon="@drawable/car"
+                        app:iconSize="30dp"
+                        app:iconTint="@color/white" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_Vehiculo_Dos_EnVisita"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_size"
+                        android:paddingTop="@dimen/padding_size"
+                        android:paddingBottom="@dimen/padding_size"
+                        android:text="@string/vehiculoDos"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:backgroundTint="@color/gris_boton"
+                        app:cornerRadius="@dimen/corner_radius"
+                        app:icon="@drawable/car"
+                        app:iconSize="30sp"
+                        app:iconTint="@color/white" />
+                </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -74,7 +111,6 @@
                     android:background="@drawable/border_box"
                     android:backgroundTint="@color/gris_claro"
                     android:orientation="vertical">
-
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -137,20 +173,20 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <TextView
-                                android:id="@+id/TextViewNombreConductor"
+                                android:id="@+id/TextViewNombreConductor_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
-                                android:id="@+id/TextViewRutConductor"
+                                android:id="@+id/TextViewRutConductor_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
                         <LinearLayout
-                            android:id="@+id/layoutPasajeroUno"
+                            android:id="@+id/layoutPasajeroUno_EnVisita"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -158,13 +194,13 @@
                             android:gravity="center"
                             android:visibility="invisible">
                             <TextView
-                                android:id="@+id/TextViewNombrePasajeroUno"
+                                android:id="@+id/TextViewNombrePasajeroUno_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
-                                android:id="@+id/TextViewRutPasajeroUno"
+                                android:id="@+id/TextViewRutPasajeroUno_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
@@ -181,7 +217,7 @@
                         android:layout_marginBottom="@dimen/margin_size"
                         android:layout_marginTop="@dimen/margin_size">
                         <LinearLayout
-                            android:id="@+id/layoutPasajeroDos"
+                            android:id="@+id/layoutPasajeroDos_EnVisita"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -189,20 +225,20 @@
                             android:gravity="center"
                             android:visibility="invisible">
                             <TextView
-                                android:id="@+id/TextViewNombrePasajeroDos"
+                                android:id="@+id/TextViewNombrePasajeroDos_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
-                                android:id="@+id/TextViewRutPasajeroDos"
+                                android:id="@+id/TextViewRutPasajeroDos_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
                         <LinearLayout
-                            android:id="@+id/layoutPasajeroTres"
+                            android:id="@+id/layoutPasajeroTres_EnVisita"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -210,13 +246,13 @@
                             android:gravity="center"
                             android:visibility="invisible">
                             <TextView
-                                android:id="@+id/TextViewNombrePasajeroTres"
+                                android:id="@+id/TextViewNombrePasajeroTres_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
-                                android:id="@+id/TextViewRutPasajeroTres"
+                                android:id="@+id/TextViewRutPasajeroTres_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
@@ -233,7 +269,7 @@
                         android:layout_marginTop="@dimen/margin_size"
                         android:layout_marginBottom="20sp">
                         <LinearLayout
-                            android:id="@+id/layoutPasajeroCuatro"
+                            android:id="@+id/layoutPasajeroCuatro_EnVisita"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -241,20 +277,20 @@
                             android:gravity="center"
                             android:visibility="invisible">
                             <TextView
-                                android:id="@+id/TextViewNombrePasajeroCuatro"
+                                android:id="@+id/TextViewNombrePasajeroCuatro_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
-                                android:id="@+id/TextViewRutPasajeroCuatro"
+                                android:id="@+id/TextViewRutPasajeroCuatro_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                         </LinearLayout>
                         <LinearLayout
-                            android:id="@+id/layoutPasajeroCinco"
+                            android:id="@+id/layoutPasajeroCinco_EnVisita"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -262,13 +298,13 @@
                             android:gravity="center"
                             android:visibility="invisible">
                             <TextView
-                                android:id="@+id/TextViewNombrePasajeroCinco"
+                                android:id="@+id/TextViewNombrePasajeroCinco_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
                                 android:textColor="@color/black"/>
                             <TextView
-                                android:id="@+id/TextViewRutPasajeroCinco"
+                                android:id="@+id/TextViewRutPasajeroCinco_EnVisita"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="@dimen/text_size"
@@ -294,6 +330,7 @@
                                 android:text="Patente Vehiculo"
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
+                                android:gravity="center"
                                 android:maxLines="3"
                                 android:lines="2"
                                 android:textSize="@dimen/text_size"
@@ -336,7 +373,7 @@
                                 android:id="@+id/TextViewMarcaIngreso"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_margin="10sp"
+                                android:layout_margin="10dp"
                                 android:text="Ingreso:    "
                                 android:textColor="@color/black"
                                 android:textAlignment="center"
@@ -351,7 +388,7 @@
                             android:orientation="vertical"
                             android:gravity="center">
                             <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btn_MarcarSalida"
+                                android:id="@+id/btn_MarcarSalida_EnVisita"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:backgroundTint="@color/red"

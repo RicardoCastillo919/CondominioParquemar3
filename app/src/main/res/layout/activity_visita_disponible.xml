@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,412 +8,455 @@
     tools:context=".VisitaDisponibleActivity"
     android:orientation="vertical">
     <FrameLayout
-        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="100sp"
-            android:layout_marginStart="@dimen/margin_size"
-            android:layout_marginEnd="@dimen/margin_size"
-            android:layout_marginTop="@dimen/margin_size">
-            <LinearLayout
-                android:layout_width="250dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:padding="@dimen/padding_size"
-                android:background="@drawable/border_box">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:text="Parquemar 3"
-                    android:textSize="@dimen/text_size"
-                    android:textStyle="bold"
-                    android:textAlignment="center"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:text="Condominio Privado"
-                    android:textSize="@dimen/under_title_size"
-                    android:textAlignment="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="end">
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/border_box"
-                    android:gravity="end">
-                    <ImageView
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:layout_margin="10dp"
-                        android:src="@mipmap/ic_launcher_round">
-                    </ImageView>
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
+        android:layout_height="match_parent"
+        android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center_vertical">
-
+            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/banner_size"
                 android:layout_marginStart="@dimen/margin_size"
                 android:layout_marginEnd="@dimen/margin_size"
-                android:background="@drawable/border_box"
-                android:backgroundTint="@color/gris_claro"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="10sp"
-                    android:paddingBottom="@dimen/padding_size"
-                    android:text="Disponible para visita"
-                    android:textAlignment="center"
-                    android:textColor="@color/verde"
-                    android:textSize="@dimen/title_size"
-                    android:textStyle="bold" />
-
+                android:layout_marginTop="@dimen/margin_size">
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_width="250sp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_size"
+                    android:background="@drawable/border_box">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:text="Parquemar 3"
+                        android:textSize="@dimen/text_size"
+                        android:textStyle="bold"
+                        android:textAlignment="center"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_margin="@dimen/margin_size"
-                        android:text="Datos Visita"
+                        android:text="Condominio Privado"
+                        android:textAlignment="center"
                         android:textColor="@color/black"
+                        android:textSize="@dimen/under_title_size" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="end">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/border_box">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/margin_size"
+                            android:src="@mipmap/ic_launcher_round">
+                        </ImageView>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_Vehiculo_Uno_Disponible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_size"
+                        android:paddingTop="@dimen/padding_size"
+                        android:paddingBottom="@dimen/padding_size"
+                        android:text="@string/vehiculoUno"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/text_size"
+                        android:backgroundTint="@color/red"
+                        app:cornerRadius="@dimen/corner_radius"
+                        app:icon="@drawable/car"
+                        app:iconSize="30dp"
+                        app:iconTint="@color/white" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btn_Vehiculo_Dos_Disponible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="@dimen/margin_size"
+                        android:paddingTop="@dimen/padding_size"
+                        android:paddingBottom="@dimen/padding_size"
+                        android:text="@string/vehiculoDos"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/text_size"
+                        android:backgroundTint="@color/gris_boton"
+                        app:cornerRadius="@dimen/corner_radius"
+                        app:icon="@drawable/car"
+                        app:iconSize="30sp"
+                        app:iconTint="@color/white" />
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_size"
+                    android:layout_marginEnd="@dimen/margin_size"
+                    android:background="@drawable/border_box"
+                    android:backgroundTint="@color/gris_claro"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="10sp"
+                        android:paddingBottom="@dimen/padding_size"
+                        android:text="Disponible para visita"
+                        android:textAlignment="center"
+                        android:textColor="@color/verde"
+                        android:textSize="@dimen/title_size"
                         android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:gravity="end"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:paddingEnd="30sp">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btn_VolverDisponible"
+                        android:layout_margin="@dimen/margin_size">
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingTop="5sp"
-                            android:paddingBottom="5sp"
-                            android:text="@string/volver"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size"
-                            app:cornerRadius="@dimen/corner_radius"
-                            app:icon="@drawable/return_blanco"
-                            app:iconSize="30sp"
-                            app:iconTint="@color/white" />
-                    </LinearLayout>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_size"
-                    android:layout_marginTop="@dimen/margin_size"
-                    android:layout_marginEnd="@dimen/margin_size"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/TextViewNombreConductor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/TextViewRutConductor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layoutPasajeroUno"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:id="@+id/TextViewNombrePasajeroUno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/TextViewRutPasajeroUno"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_size"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="@dimen/margin_size"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:id="@+id/layoutPasajeroDos"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:id="@+id/TextViewNombrePasajeroDos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/TextViewRutPasajeroDos"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layoutPasajeroTres"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:id="@+id/TextViewNombrePasajeroTres"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/TextViewRutPasajeroTres"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_size"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="@dimen/margin_size"
-                    android:layout_marginBottom="@dimen/margin_size"
-                    android:gravity="center">
-
-                    <LinearLayout
-                        android:id="@+id/layoutPasajeroCuatro"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:id="@+id/TextViewNombrePasajeroCuatro"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/TextViewRutPasajeroCuatro"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/layoutPasajeroCinco"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:visibility="invisible">
-
-                        <TextView
-                            android:id="@+id/TextViewNombrePasajeroCinco"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-
-                        <TextView
-                            android:id="@+id/TextViewRutPasajeroCinco"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAlignment="center"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/text_size" />
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/margin_size"
-                    android:layout_marginEnd="@dimen/margin_size">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="180sp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10sp"
-                            android:lines="2"
-                            android:maxLines="3"
-                            android:text="Patente Vehiculo"
-                            android:textAlignment="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="Datos Visita"
                             android:textColor="@color/black"
                             android:textSize="@dimen/text_size"
                             android:textStyle="bold" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/TextViewPatente_Disponible"
+                        <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/margin_size"
-                            android:layout_marginEnd="@dimen/margin_size"
-                            android:backgroundTint="@color/red"
-                            android:clickable="false"
-                            android:padding="@dimen/padding_size"
-                            android:text="GCSL23"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size"
-                            app:cornerRadius="@dimen/corner_radius" />
+                            android:orientation="horizontal"
+                            android:gravity="end">
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_VolverSalida"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text="@string/volver"
+                                android:textSize="@dimen/text_size"
+                                android:textColor="@color/white"
+                                android:paddingTop="5dp"
+                                android:paddingBottom="5dp"
+                                app:iconSize="30dp"
+                                app:iconTint="@color/white"
+                                app:icon="@drawable/return_blanco"
+                                app:cornerRadius="@dimen/corner_radius"
+                                />
+                        </LinearLayout>
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/margin_size">
-
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginTop="@dimen/margin_size"
+                        android:layout_marginEnd="@dimen/margin_size"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnMarcarIngreso"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_margin="@dimen/margin_size"
-                            android:backgroundTint="@color/verde"
-                            android:padding="@dimen/padding_size"
-                            android:text="Marcar Entrada"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size"
-                            android:textStyle="bold"
-                            app:cornerRadius="@dimen/corner_radius" />
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/TextViewNombreConductor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/TextViewRutConductor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutPasajeroUno"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:id="@+id/TextViewNombrePasajeroUno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/TextViewRutPasajeroUno"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+                        </LinearLayout>
+
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="@dimen/margin_size"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center">
 
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/btnMarcarSalida"
-                            android:layout_width="match_parent"
+                        <LinearLayout
+                            android:id="@+id/layoutPasajeroDos"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:id="@+id/TextViewNombrePasajeroDos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/TextViewRutPasajeroDos"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutPasajeroTres"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:id="@+id/TextViewNombrePasajeroTres"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/TextViewRutPasajeroTres"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="@dimen/margin_size"
+                        android:layout_marginBottom="@dimen/margin_size"
+                        android:gravity="center">
+
+                        <LinearLayout
+                            android:id="@+id/layoutPasajeroCuatro"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:id="@+id/TextViewNombrePasajeroCuatro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/TextViewRutPasajeroCuatro"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/layoutPasajeroCinco"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:visibility="invisible">
+
+                            <TextView
+                                android:id="@+id/TextViewNombrePasajeroCinco"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+
+                            <TextView
+                                android:id="@+id/TextViewRutPasajeroCinco"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/margin_size"
+                        android:layout_marginEnd="@dimen/margin_size">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="180sp"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="10sp"
+                                android:lines="2"
+                                android:maxLines="3"
+                                android:text="Patente Vehiculo"
+                                android:textAlignment="center"
+                                android:gravity="center"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/text_size"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
-                            android:layout_margin="@dimen/margin_size"
-                            android:backgroundTint="@color/gris_boton"
-                            android:clickable="false"
-                            android:padding="@dimen/padding_size"
-                            android:text="Marcar Salida"
-                            android:textAllCaps="false"
-                            android:textColor="@color/white"
-                            android:textSize="@dimen/text_size"
-                            app:cornerRadius="@dimen/corner_radius" />
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/TextViewPatente_Disponible"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/margin_size"
+                                android:layout_marginEnd="@dimen/margin_size"
+                                android:backgroundTint="@color/red"
+                                android:clickable="false"
+                                android:padding="@dimen/padding_size"
+                                android:text="GCSL23"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size"
+                                app:cornerRadius="@dimen/corner_radius" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="@dimen/margin_size">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnMarcarIngreso"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="@dimen/margin_size"
+                                android:backgroundTint="@color/verde"
+                                android:padding="@dimen/padding_size"
+                                android:text="Marcar Entrada"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size"
+                                android:textStyle="bold"
+                                app:cornerRadius="@dimen/corner_radius" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnMarcarSalida"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="@dimen/margin_size"
+                                android:backgroundTint="@color/gris_boton"
+                                android:clickable="false"
+                                android:padding="@dimen/padding_size"
+                                android:text="Marcar Salida"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/text_size"
+                                app:cornerRadius="@dimen/corner_radius" />
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
+        </LinearLayout>
+
         </LinearLayout>
     </FrameLayout>
-
-
-</LinearLayout>
+    </RelativeLayout>

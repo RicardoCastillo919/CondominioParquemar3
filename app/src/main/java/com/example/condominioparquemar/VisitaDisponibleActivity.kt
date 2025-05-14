@@ -1,30 +1,32 @@
 package com.example.condominioparquemar
 
+import android.app.Dialog
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View.VISIBLE
-import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
-import com.google.common.base.Objects
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
-import org.w3c.dom.Text
-import java.text.SimpleDateFormat
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 import java.util.TimeZone
+import android.view.MotionEvent
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.toColorInt
 
 class VisitaDisponibleActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
-    private lateinit var datosPasajeros: String
+    private lateinit var datosPasajerosUno: String
+    private var datos: Map<String, Any>? = null
+    private var botonSeleccionado: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +34,7 @@ class VisitaDisponibleActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         db = FirebaseFirestore.getInstance()
-        datosPasajeros = ""
+        datosPasajerosUno = ""
 
         val documentoId = intent?.getStringExtra("documentoId")
         Log.d("idDocumento", "$documentoId")
@@ -45,6 +47,10 @@ class VisitaDisponibleActivity : AppCompatActivity() {
 
         val btnMarcarIngreso = findViewById< MaterialButton>(R.id.btnMarcarIngreso)
         val btnVolver = findViewById<MaterialButton>(R.id.btn_VolverDisponible)
+        // Esta configurados para que funcione de manera interruptor
+        val btnVehiculoUno = findViewById<MaterialButton>(R.id.btn_Vehiculo_Uno_Disponible)
+        val btnVehiculoDos = findViewById<MaterialButton>(R.id.btn_Vehiculo_Dos_Disponible)
+
 
         btnVolver.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -72,6 +78,63 @@ class VisitaDisponibleActivity : AppCompatActivity() {
                     Log.e("Firestore", "Error al actualizar campo", e)
                 }
         }
+
+        fun animarBotonPresionado(boton: MaterialButton) {
+            boton.animate()
+                .scaleX(0.9f).scaleY(0.9f)
+                .setDuration(50)
+                .withEndAction {
+                    boton.animate()
+                        .scaleX(1f).scaleY(1f)
+                        .setDuration(50)
+                        .start()
+                }
+                .start()
+        }
+
+        btnVehiculoUno.setOnClickListener {
+            if (botonSeleccionado != 1) {
+                animarBotonPresionado(btnVehiculoUno)
+                btnVehiculoUno.setBackgroundColor("#a40101".toColorInt()) // rojo
+                btnVehiculoDos.setBackgroundColor("#A6A6A6".toColorInt()) // gris
+                botonSeleccionado = 1
+            }
+            //datos Vehiculo Uno
+            findViewById<TextView>(R.id.TextViewNombreConductor).text = datos?.get("nombreConductorUno").toString()
+            findViewById<TextView>(R.id.TextViewRutConductor).text = datos?.get("rutConductorUno").toString()
+            findViewById<MaterialButton>(R.id.TextViewPatente_Disponible).text = datos?.get("patenteVehiculoUno").toString()
+            // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
+            datosPasajerosUno = datos?.get("nombrePasajerosUno").toString()
+            Log.d("DatosPasajeros", datosPasajerosUno)
+            // ✅ Llamamos a `separarPersonas()` después de actualizar `datosPasajeros`
+            separarPersonas(datosPasajerosUno)
+        }
+
+        btnVehiculoDos.setOnClickListener {
+
+            //datos Vehiculo Dos
+            if(datos?.get("patenteVehiculoDos").toString().isNotEmpty()){
+                if (botonSeleccionado != 2) {
+                    animarBotonPresionado(btnVehiculoDos)
+                    btnVehiculoDos.setBackgroundColor("#a40101".toColorInt()) // rojo
+                    btnVehiculoUno.setBackgroundColor("#A6A6A6".toColorInt()) // gris
+                    botonSeleccionado = 2
+                }
+                findViewById<TextView>(R.id.TextViewNombreConductor).text = datos?.get("nombreConductorDos").toString()
+                findViewById<TextView>(R.id.TextViewRutConductor).text = datos?.get("rutConductorDos").toString()
+                findViewById<MaterialButton>(R.id.TextViewPatente_Disponible).text = datos?.get("patenteVehiculoDos").toString()
+                // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
+                datosPasajerosUno = datos?.get("nombrePasajerosDos").toString()
+                Log.d("DatosPasajeros", datosPasajerosUno)
+                // ✅ Llamamos a `separarPersonas()` después de actualizar `datosPasajeros`
+                separarPersonas(datosPasajerosUno)
+            }else{
+                Toast.makeText(this, "No hay segundo auto registrado", Toast.LENGTH_SHORT).show()
+            }
+
+
+        }
+
     }
     private fun obtenerTimestampActual(): Timestamp {
         val zonaChile = TimeZone.getTimeZone("America/Santiago")
@@ -85,7 +148,8 @@ class VisitaDisponibleActivity : AppCompatActivity() {
             .get()
             .addOnSuccessListener { document ->
                 if (document.exists()) {
-                    val datos = document.data
+                    datos = document.data
+                    //datos Vehiculo Uno
                     findViewById<TextView>(R.id.TextViewNombreConductor).text =
                         datos?.get("nombreConductorUno").toString()
                     findViewById<TextView>(R.id.TextViewRutConductor).text =
@@ -93,11 +157,10 @@ class VisitaDisponibleActivity : AppCompatActivity() {
                     findViewById<MaterialButton>(R.id.TextViewPatente_Disponible).text =
                         datos?.get("patenteVehiculoUno").toString()
                     // 🔥 Actualizamos `datosPasajeros` con la información de Firestore
-                    datosPasajeros = datos?.get("nombrePasajerosUno").toString()
-                    Log.d("DatosPasajeros", datosPasajeros)
-
+                    datosPasajerosUno = datos?.get("nombrePasajerosUno").toString()
+                    Log.d("DatosPasajeros", datosPasajerosUno)
                     // ✅ Llamamos a `separarPersonas()` después de actualizar `datosPasajeros`
-                    separarPersonas(datosPasajeros)
+                    separarPersonas(datosPasajerosUno)
                 } else {
                     Log.d("Firestore", "No se encontró el documento con ID: $documentoId")
                 }

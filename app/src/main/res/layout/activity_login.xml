@@ -8,153 +8,157 @@
     android:background="@drawable/background"
     tools:context=".LoginActivity"
     android:orientation="vertical">
-
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp">
-        <LinearLayout
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="@dimen/padding_size"
-            android:background="@drawable/border_box">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Parquemar 3"
-                android:textSize="@dimen/text_size"
-                android:textStyle="bold"
-                android:textAlignment="center"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Condominio Privado"
-                android:textSize="@dimen/under_title_size"
-                android:textAlignment="center"/>
-        </LinearLayout>
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="end">
+            android:layout_height="@dimen/banner_size"
+            android:layout_marginStart="@dimen/margin_size"
+            android:layout_marginEnd="@dimen/margin_size"
+            android:layout_marginTop="@dimen/margin_size">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="250sp"
                 android:layout_height="match_parent"
-                android:background="@drawable/border_box"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="@dimen/padding_size"
+                android:background="@drawable/border_box">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Parquemar 3"
+                    android:textSize="@dimen/text_size"
+                    android:textStyle="bold"
+                    android:textAlignment="center"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Condominio Privado"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/under_title_size" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:gravity="end">
-                <ImageView
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_margin="10dp"
-                    android:src="@mipmap/ic_launcher_round">
-                </ImageView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/border_box">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/margin_size"
+                        android:src="@mipmap/ic_launcher_round">
+                    </ImageView>
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
-    <!-- Encabezado -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical">
+        <!-- Encabezado -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/border_box"
-            android:orientation="vertical"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            tools:ignore="MissingConstraints">
+            android:layout_height="match_parent"
+            android:gravity="center_vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_box"
+                android:orientation="vertical"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                tools:ignore="MissingConstraints">
 
-            <TextView
-                android:id="@+id/tv_login_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/open_sans_medium"
-                android:layout_marginTop="5dp"
-                android:text="Inicio de sesión"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/title_size"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:padding="@dimen/padding_size">
-                <!-- Formulario de Ingreso -->
                 <TextView
+                    android:id="@+id/tv_login_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Ingresa el nombre de usuario:"
-                    android:textSize="18dp"
-                    android:textColor="@color/black"/>
-                <EditText
-                    android:id="@+id/editTextNombreUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:hint="Ej: Fabiana Días"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:padding="@dimen/padding_size">
-                <!-- Formulario de Ingreso -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Ingresa el contraseña:"
-                    android:textSize="18dp"
-                    android:textColor="@color/black"/>
-                <EditText
-                    android:id="@+id/editTextPasswordUsuario"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Contraseña"
-                    android:inputType="textPassword"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_vertical"
-                android:padding="10dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Si no puede ingresar, contactar con el administrador"
-                    android:textSize="20dp"
+                    android:fontFamily="@font/open_sans_medium"
+                    android:layout_marginTop="5dp"
+                    android:text="Inicio de sesión"
                     android:textAlignment="center"
-                    android:textStyle="bold"
                     android:textColor="@color/black"
-                    android:layout_marginBottom="10dp"/>
+                    android:textSize="@dimen/title_size"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding_size">
+                    <!-- Formulario de Ingreso -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ingresa el nombre de usuario:"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"/>
+                    <EditText
+                        android:id="@+id/editTextNombreUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:hint="Ej: Fabiana Días"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/padding_size">
+                    <!-- Formulario de Ingreso -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ingresa el contraseña:"
+                        android:textSize="18dp"
+                        android:textColor="@color/black"/>
+                    <EditText
+                        android:id="@+id/editTextPasswordUsuario"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Contraseña"
+                        android:inputType="textPassword"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_vertical"
+                    android:padding="10dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Si no puede ingresar, contactar con el administrador"
+                        android:textSize="20dp"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:layout_marginBottom="10dp"/>
+                </LinearLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_IngresarUsuario"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/red"
+                    android:padding="25dp"
+                    android:layout_margin="20dp"
+                    android:text="Iniciar Sesión"
+                    android:textSize="25dp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    app:cornerRadius="10dp" />
+
             </LinearLayout>
-
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_IngresarUsuario"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/red"
-                android:padding="25dp"
-                android:layout_margin="20dp"
-                android:text="Iniciar Sesión"
-                android:textSize="25dp"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                app:cornerRadius="10dp" />
-
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
+
 
 
 
